@@ -30,10 +30,6 @@ class LibsynPlayer {
       if (!e.origin || !this._trustedOrigins.includes(e.origin)) {
         return;
       }
-      // Check that its source matches the podcast iframe src
-      if (!e.source || !this._element || e.source.location.href !== this._element.getAttribute("src")) {
-        return;
-      }
       // Ensure data is in Libsyn's timestamp format 
       if (!this._isValidData(e.data)) {
         return;
@@ -42,7 +38,7 @@ class LibsynPlayer {
       if (! this.hasStarted()) {
         this._state.hasStarted = true;
         this._fire(this._supportedEvents.START);
-      }
+      } 
     }, false);
   }
 
@@ -106,3 +102,7 @@ class LibsynPlayer {
 }
 
 export default LibsynPlayer;
+
+export function player(iframe) {
+  return new LibsynPlayer(iframe);
+}
