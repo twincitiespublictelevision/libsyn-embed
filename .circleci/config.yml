@@ -53,7 +53,7 @@ jobs:
           paths:
             - ~/project/dist
 
-  # deploy_to_github:
+  deploy_to_github:
     docker:
       - image: circleci/node:6.10
     steps:
