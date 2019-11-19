@@ -35,11 +35,25 @@ class LibsynPlayer {
         return;
       }
 
+      if (!this._isThisPlayer(e.source)) {
+        return;
+      }
+
       if (! this.hasStarted()) {
         this._state.hasStarted = true;
         this._fire(this._supportedEvents.START);
       } 
     }, false);
+  }
+
+  /** 
+  * Checks if a given source is the same source as  
+  * the instance of this player 
+  * @param string source 
+  * @return bool 
+  */
+  _isThisPlayer(source) {
+    return this._element.contentWindow === source;
   }
 
   /** 
