@@ -62,7 +62,7 @@ jobs:
           key: repo-v2-{{ .Branch }}-{{ checksum ".circle-sha" }}
       - restore_cache:
           key: node_modules-{{ checksum "package.json" }}
-      - run: git clone git@github.com:twincitiespublictelevision/turnstile-cli.git  
+      - run: git clone https://github.com/twincitiespublictelevision/turnstile-cli.git
       - run: cd turnstile-cli && pip install -r requirements.txt 
       - run: python src/cli.py libsyn-js-qa --driver js
         
