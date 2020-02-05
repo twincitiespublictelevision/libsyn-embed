@@ -108,7 +108,9 @@ workflows:
       # - node_build:
       #     requires:
       #       - node_test
-      - package_audit 
+      - package_audit:
+          requires:
+            - checkout
       - deploy_to_github:
       #     requires:
       #       - node_build
