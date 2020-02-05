@@ -110,8 +110,8 @@ workflows:
       #       - node_test
       - package_audit 
       - deploy_to_github:
-          requires:
-            - node_build
+      #     requires:
+      #       - node_build
           filters:
             branches:
               only:
