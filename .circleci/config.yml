@@ -69,9 +69,10 @@ jobs:
             mkdir -p ~/.ssh
             touch ~/.ssh/known_hosts
             ssh-keyscan github.com >> ~/.ssh/known_hosts
+            echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
             git clone git@github.com:twincitiespublictelevision/turnstile-cli.git
       - run: cd turnstile-cli && pip install -r requirements.txt 
-      - run: python src/cli.py libsyn-js-qa --driver js
+      - run: python src/cli.py libsyn-js-qa --driver js 
         
   deploy_to_github:
     docker:
