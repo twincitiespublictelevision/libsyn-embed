@@ -67,7 +67,7 @@ jobs:
           ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts
       - add-ssh-keys:
          fingerprints:
-           - "a1:e0:cd:6f:8d:0a:ec:08:7e:0b:e0:17:36:68:ff:06"
+           - "ed:25:24:a6:bb:7f:fb:a8:9d:a9:61:3f:b1:d9:3e:8d"
       - run: git clone git@github.com:twincitiespublictelevision/turnstile-cli.git
       - run: cd turnstile-cli && pip install -r requirements.txt 
       - run: python src/cli.py libsyn-js-qa --driver js 
