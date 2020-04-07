@@ -63,6 +63,7 @@ jobs:
       - restore_cache:
           key: node_modules-{{ checksum "package.json" }}
       - run: |
+          mkdir ~/.ssh
           ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts
       - add-ssh-keys:
          fingerprints:
