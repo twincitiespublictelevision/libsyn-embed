@@ -8,10 +8,8 @@ class LibsynPlayer {
     this._trustedOrigins = Object.freeze(["https://html5-player.libsyn.com"]);
     this._supportedEvents = Object.freeze({START: "START"});
     this._dataFormat = /^\d{2}:\d{2}:\d{2}/;
-    this._listeners = {}; 
-    this._state = {hasStarted: false};
 
-    this._attach(iframe);
+    this.attach(iframe);
   }
 
   reset() {
@@ -21,8 +19,9 @@ class LibsynPlayer {
     this._state = {hasStarted: false};
   }
 
-  _attach(element) {
+  attach(element) {
     if (element && element.tagName === "IFRAME") {
+      this.reset();
       this._element = element;
       this._listen();
     } else {
