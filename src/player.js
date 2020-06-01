@@ -14,11 +14,11 @@ class LibsynPlayer {
     this._attach(iframe);
   }
 
-  _reset() {
+  reset() {
     window.removeEventListener("message", this._handleMessage);
     this._element = undefined;
     this._listeners = {};
-    this.state = {hasStarted: false};
+    this._state = {hasStarted: false};
   }
 
   _attach(element) {
@@ -65,7 +65,7 @@ class LibsynPlayer {
   * @return bool 
   */
   _isThisPlayer(source) {
-    return this._element.contentWindow === source;
+    return this._element && this._element.contentWindow === source;
   }
 
   /** 
