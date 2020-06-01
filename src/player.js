@@ -5,14 +5,25 @@
 class LibsynPlayer {
 
   constructor(iframe) {
-    this._element = iframe;
     this._trustedOrigins = Object.freeze(["https://html5-player.libsyn.com"]);
     this._supportedEvents = Object.freeze({START: "START"});
     this._dataFormat = /^\d{2}:\d{2}:\d{2}/;
     this._listeners = {}; 
     this._state = {hasStarted: false};
 
-    if (this._element && this._element.tagName === "IFRAME") {
+    this._attach(iframe);
+  }
+
+  _reset() {
+    window.removeEventListener("message", this._handleMessage);
+    this._element = undefined;
+    this._listeners = {};
+    this.state = {hasStarted: false};
+  }
+
+  _attach(element) {
+    if (element && element.tagName === "IFRAME") {
+      this._element = element;
       this._listen();
     } else {
       console.error("Failed to initialize Libsyn embed wrapper. Element given not an iframe.")
@@ -24,26 +35,27 @@ class LibsynPlayer {
   */
   _listen() {
     if (! window) { return; }
+    window.addEventListener("message", this._handleMessage.bind(this));
+  }
 
-    window.addEventListener("message", (e) => { 
-      // Check that it came from expected origin 
-      if (!e.origin || !this._trustedOrigins.includes(e.origin)) {
-        return;
-      }
-      // Ensure data is in Libsyn's timestamp format 
-      if (!this._isValidData(e.data)) {
-        return;
-      }
+  _handleMessage(e) {
+    // Check that it came from expected origin 
+    if (!e.origin || !this._trustedOrigins.includes(e.origin)) {
+      return;
+    }
+    // Ensure data is in Libsyn's timestamp format 
+    if (!this._isValidData(e.data)) {
+      return;
+    }
 
-      if (!this._isThisPlayer(e.source)) {
-        return;
-      }
+    if (!this._isThisPlayer(e.source)) {
+      return;
+    }
 
-      if (! this.hasStarted()) {
-        this._state.hasStarted = true;
-        this._fire(this._supportedEvents.START);
-      } 
-    }, false);
+    if (! this.hasStarted()) {
+      this._state.hasStarted = true;
+      this._fire(this._supportedEvents.START);
+    } 
   }
 
   /** 
