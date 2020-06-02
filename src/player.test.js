@@ -131,3 +131,33 @@ describe('Supports start event', () => {
       expect(cb2).toHaveBeenCalledTimes(1);
     });
 });
+
+describe('Resets player', () => {
+    test('stops listening event listener', () => {
+      let cb = jest.fn();
+      let iframe = getPlayers()[0];
+      let player = new LibsynPlayer(iframe);
+      player.on("start", cb);
+      fireMessageEvent("00:00:00");
+
+      player.reset();
+      fireMessageEvent("00:01:00");
+
+      expect(cb).toHaveBeenCalledTimes(1);
+    });
+
+    test('removes element and state', () => {
+      let cb = jest.fn();
+      let iframe = getPlayers()[0];
+      let player = new LibsynPlayer(iframe);
+
+      player.on("start", cb);
+      fireMessageEvent("00:00:00");
+      
+      expect(player.hasStarted()).toBe(true);
+      player.reset();
+
+      expect(player.hasStarted()).toBe(false);
+      expect(player._element).toBe(undefined);
+    });
+});
