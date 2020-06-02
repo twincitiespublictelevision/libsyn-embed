@@ -6,6 +6,7 @@ module.exports = {
     path: __dirname,
     filename: 'dist/libsyn.min.js',
     libraryTarget: 'umd',
+    globalObject: 'this'
   },
   module: {
     rules: [
