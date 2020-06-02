@@ -13,7 +13,7 @@ class LibsynPlayer {
   }
 
   reset() {
-    window.removeEventListener("message", this._handleMessage);
+    window && window.removeEventListener("message", this._handleMessage);
     this._element = undefined;
     this._listeners = {};
     this._state = {hasStarted: false};
