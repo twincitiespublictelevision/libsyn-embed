@@ -5,8 +5,7 @@ module.exports = {
   output: {
     path: __dirname,
     filename: 'dist/libsyn.min.js',
-    library: 'LibsynPlayer',
-    libraryTarget: 'var',
+    libraryTarget: 'umd',
   },
   module: {
     rules: [
