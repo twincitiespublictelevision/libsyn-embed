@@ -2,7 +2,7 @@
   "name": "libsyn-embed",
   "version": "0.0.1",
   "description": "Library for wrapping Libsyn embeds",
-  "main": "src/index.js",
+  "main": "dist/libsyn.min.js",
   "devDependencies": {
     "@babel/preset-env": "^7.7.1",
     "babel-loader": "^8.0.6",
