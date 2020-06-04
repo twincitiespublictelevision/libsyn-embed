@@ -1,7 +1,7 @@
 {
-  "name": "libsyn-embed",
+  "name": "@twincitiespublictelevision/libsyn-embed",
   "version": "0.0.1",
-  "description": "Library for wrapping Libsyn embeds",
+  "description": "A library for wrapping Libsyn iframe embeds",
   "main": "dist/libsyn.min.js",
   "devDependencies": {
     "@babel/preset-env": "^7.7.1",
@@ -14,6 +14,13 @@
     "test": "jest",
     "build": "webpack"
   },
-  "author": "",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twincitiespublictelevision/libsyn-embed"
+  },
+  "bugs": {
+    "url": "https://github.com/twincitiespublictelevision/libsyn-embed/issues"
+  },
+  "author": "Twin Cities PBS",
+  "license": "Apache-2.0"
 }
