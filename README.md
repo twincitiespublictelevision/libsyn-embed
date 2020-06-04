@@ -4,7 +4,7 @@ Library for wrapping embedded podcast players from [Libsyn](https://libsyn.com/)
 # Usage
 
 ```javascript
-import LibsynPlayer from "libsyn-embed";
+import LibsynPlayer from "@twincitiespublictelevision/libsyn-embed";
 
 let iframes = document.querySelectorAll('iframe[src*="html5-player.libsyn.com"]');
 

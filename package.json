@@ -1,6 +1,6 @@
 {
   "name": "@twincitiespublictelevision/libsyn-embed",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A library for wrapping Libsyn iframe embeds",
   "main": "dist/libsyn.min.js",
   "devDependencies": {
