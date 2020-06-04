@@ -13,10 +13,17 @@ class LibsynPlayer {
   }
 
   reset() {
-    window && window.removeEventListener("message", this._handleMessage);
-    this._element = undefined;
-    this._listeners = {};
-    this._state = {hasStarted: false};
+      // In server-side rendering environments, 
+      // window might not exist and will throw a Reference Error
+      try {
+        window.removeEventListener("message", this._handleMessage);
+      } 
+      catch (e) {
+        console.error("Unable to remove event listener for Libsyn player", e);
+      }
+      this._element = undefined;
+      this._listeners = {};
+      this._state = {hasStarted: false};
   }
 
   attach(element) {
@@ -33,8 +40,14 @@ class LibsynPlayer {
   * Add event listener for message events from an embedded libsyn player
   */
   _listen() {
-    if (! window) { return; }
-    window.addEventListener("message", this._handleMessage.bind(this));
+    // In server-side rendering environments, 
+    // window might not exist and will throw a Reference Error
+    try {
+      window.addEventListener("message", this._handleMessage.bind(this));
+    } 
+    catch(e) {
+      console.error("Unable to add listener for Libsyn player", e);
+    }
   }
 
   _handleMessage(e) {
